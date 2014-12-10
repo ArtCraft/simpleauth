@@ -7,6 +7,7 @@
             "email": "hello@cedric.ws"
         }
     ],
+    "license" : "MIT",
     "require": {
         "php": ">=5.4.0"
     },
@@ -15,5 +16,4 @@
             "Cedricve\\Simpleauth\\": "src/"
         }
     },
-    "minimum-stability": "stable"
 }
