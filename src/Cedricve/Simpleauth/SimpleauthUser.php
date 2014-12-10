@@ -1,0 +1,50 @@
+<?php namespace Cedricve\Simpleauth;
+ 
+use Illuminate\Auth\UserInterface;
+
+class SimpleauthUser implements UserInterface
+{
+    protected $token = "";
+    protected $details = [];
+    public $id = null;
+    public $username = "";
+
+    public function __construct(array $details)
+    {
+        $this->details = $details;
+        $this->id = $details["id"];
+        $this->username = $details["username"];
+    }
+ 
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->details["id"];
+    }
+ 
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->details["password"];
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->token = $value;
+    }
+
+    public function getRememberToken()
+    {
+        return $this->token;
+    }
+
+    public function getRememberTokenName(){}
+}

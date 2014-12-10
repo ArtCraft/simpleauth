@@ -1,0 +1,19 @@
+{
+    "name": "cedricve/simpleauth",
+    "description": "",
+    "authors": [
+        {
+            "name": "Cédric Verstraeten",
+            "email": "hello@cedric.ws"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Cedricve\\Simpleauth\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
