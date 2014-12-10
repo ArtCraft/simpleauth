@@ -1,6 +1,7 @@
 {
     "name": "cedricve/simpleauth",
     "description": "A simple authentication driver for Laravel",
+    "keywords": ["authentication","auth","simple"],
     "authors": [
         {
             "name": "Cédric Verstraeten",
