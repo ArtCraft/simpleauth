@@ -68,15 +68,12 @@ class SimpleauthUserProvider implements UserProviderInterface
                 }
             }
 
-
             // Check if user has been found.
             if($user != null)
             {
                 return new SimpleauthUser($user);
             }
         }
-
-        return $user;
     }
 
     /**
