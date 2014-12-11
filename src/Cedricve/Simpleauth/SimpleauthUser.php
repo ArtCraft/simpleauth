@@ -36,15 +36,9 @@ class SimpleauthUser implements UserInterface
         return $this->details["password"];
     }
 
-    public function setRememberToken($value)
-    {
-        $this->token = $value;
-    }
+    public function setRememberToken($value){}
 
-    public function getRememberToken()
-    {
-        return $this->token;
-    }
+    public function getRememberToken(){}
 
     public function getRememberTokenName(){}
 }
