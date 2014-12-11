@@ -37,8 +37,6 @@ class SimpleauthUser implements UserInterface
     }
 
     public function setRememberToken($value){}
-
     public function getRememberToken(){}
-
     public function getRememberTokenName(){}
 }

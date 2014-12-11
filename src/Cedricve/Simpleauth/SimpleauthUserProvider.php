@@ -21,32 +21,26 @@ class SimpleauthUserProvider implements UserProviderInterface
         $user = null;
 
         // If id is not valid, return null.
-        if($id == null || $id < 0)
+        if($id != null && $id > 0)
         {
-            return $user;
-        }
-
-        // Search for the user in the users array in the app.config.
-        foreach ($this->users as $key => $value)
-        {
-            if(array_key_exists("id", $value))
+            // Search for the user in the users array in the app.config.
+            foreach ($this->users as $key => $value)
             {
-                if($value["id"] == $id)
+                if(array_key_exists("id", $value))
                 {
-                    $user = $value;
-                    break;
+                    if($value["id"] == $id)
+                    {
+                        $user = $value;
+                        break;
+                    }
                 }
             }
-        }
 
-        // Check if user has been found.
-        if($user != null)
-        {
-            return new SimpleauthUser($user);
-        }
-        else
-        {
-            return $user;
+            // Check if user has been found.
+            if($user != null)
+            {
+                return new SimpleauthUser($user);
+            }
         }
     }
 
@@ -58,34 +52,31 @@ class SimpleauthUserProvider implements UserProviderInterface
         $user = null;
 
         // If credentials is not a valid array, return null.
-        if(!array_key_exists("username", $credentials) || !array_key_exists("password", $credentials))
+        if(array_key_exists("username", $credentials) && array_key_exists("password", $credentials))
         {
-            return $user;
-        }
-
-        // Search for the user in the users array in the app.config.
-        foreach ($this->users as $key => $value)
-        {
-            if(array_key_exists("username", $value) && array_key_exists("password", $value))
+            // Search for the user in the users array in the app.config.
+            foreach ($this->users as $key => $value)
             {
-                if($value["username"] == $credentials["username"] && 
-                    $value["password"] == $credentials["password"])
+                if(array_key_exists("username", $value) && array_key_exists("password", $value))
                 {
-                    $user = $value;
-                    break;
+                    if($value["username"] == $credentials["username"] && 
+                        $value["password"] == $credentials["password"])
+                    {
+                        $user = $value;
+                        break;
+                    }
                 }
+            }
+
+
+            // Check if user has been found.
+            if($user != null)
+            {
+                return new SimpleauthUser($user);
             }
         }
 
-        // Check if user has been found.
-        if($user != null)
-        {
-            return new SimpleauthUser($user);
-        }
-        else
-        {
-            return $user;
-        }
+        return $user;
     }
 
     /**
@@ -98,6 +89,5 @@ class SimpleauthUserProvider implements UserProviderInterface
     }
 
     public function retrieveByToken($identifier, $token){}
-
     public function updateRememberToken(UserInterface $user, $token){}
 }
