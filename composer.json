@@ -17,5 +17,6 @@
         "psr-0": {
             "Cedricve\\Simpleauth\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
