@@ -32,6 +32,7 @@ And add a new property to the `app/config/app.php` file:
             "password" => "root",
             "firstname" => "Cédric",
             "secondname" => "Verstraeten"
+            ...
         ],
         [
             "id" => 2,
@@ -39,6 +40,7 @@ And add a new property to the `app/config/app.php` file:
             "password" => "root",
             "firstname" => "Cédric",
             "secondname" => "Verstraeten"
+            ...
         ]
     ],
 
@@ -51,7 +53,7 @@ You can use the default Auth methods.
 
 **Try to signin**
 
-    Auth::attempt(["username" => 'root', "password" => "password"))
+    Auth::attempt(['username' => 'root', 'password' => 'root'))
 
 **Retrieving the user that signed in**
 
