@@ -13,8 +13,6 @@ class SimpleauthUserProvider implements UserProviderInterface
         $this->users = Config::get("app.users");
     }
 
-    }
-
     public function getUsers()
     {
         return $this->users;
@@ -24,6 +22,7 @@ class SimpleauthUserProvider implements UserProviderInterface
     {
         $this->users = $users;
     }
+    
     /**
      *  Retrieve a user by their unique identifier.
      */
