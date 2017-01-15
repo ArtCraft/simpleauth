@@ -8,12 +8,14 @@ class SimpleauthUser implements UserInterface
     protected $details = [];
     public $id = null;
     public $username = "";
+    public $language = "";
 
     public function __construct(array $details)
     {
         $this->details = $details;
         $this->id = $details["id"];
         $this->username = $details["username"];
+        $this->language = $details["language"];
     }
  
     /**
