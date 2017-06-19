@@ -1,8 +1,8 @@
 <?php namespace Cedricve\Simpleauth;
- 
-use Illuminate\Auth\UserInterface;
 
-class SimpleauthUser implements UserInterface
+use Illuminate\Contracts\Auth\Authenticatable;
+
+class SimpleauthUser implements Authenticatable
 {
     protected $token = "";
     protected $details = [];
@@ -17,22 +17,29 @@ class SimpleauthUser implements UserInterface
         $this->username = $details["username"];
         $this->language = $details["language"];
     }
- 
+
     /**
      * Get the unique identifier for the user.
      *
      * @return mixed
      */
+
     public function getAuthIdentifier()
     {
         return $this->details["id"];
     }
- 
+
+    public function getAuthIdentifierName()
+    {
+        return $this->details["username"];
+    }
+
     /**
      * Get the password for the user.
      *
      * @return string
      */
+
     public function getAuthPassword()
     {
         return $this->details["password"];
