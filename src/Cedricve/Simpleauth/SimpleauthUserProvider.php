@@ -1,10 +1,10 @@
 <?php namespace Cedricve\Simpleauth;
 
 use Config;
-use Illuminate\Auth\UserProviderInterface;
-use Illuminate\Auth\UserInterface;
+use Illuminate\Contracts\Auth\UserProvider;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class SimpleauthUserProvider implements UserProviderInterface
+class SimpleauthUserProvider implements UserProvider
 {
     protected $users;
 
@@ -22,7 +22,7 @@ class SimpleauthUserProvider implements UserProviderInterface
     {
         $this->users = $users;
     }
-    
+
     /**
      *  Retrieve a user by their unique identifier.
      */
@@ -69,7 +69,7 @@ class SimpleauthUserProvider implements UserProviderInterface
             {
                 if(array_key_exists("username", $value) && array_key_exists("password", $value))
                 {
-                    if($value["username"] == $credentials["username"] && 
+                    if($value["username"] == $credentials["username"] &&
                         $value["password"] == $credentials["password"])
                     {
                         $user = $value;
@@ -89,12 +89,12 @@ class SimpleauthUserProvider implements UserProviderInterface
     /**
      *  Validate a user against the given credentials.
      */
-    public function validateCredentials(UserInterface $user, array $credentials)
+    public function validateCredentials(Authenticatable $user, array $credentials)
     {
         // If password equals than the user is ok to signin.
         return ($user->getAuthPassword() == $credentials["password"]);
     }
 
     public function retrieveByToken($identifier, $token){}
-    public function updateRememberToken(UserInterface $user, $token){}
+    public function updateRememberToken(Authenticatable $user, $token){}
 }
