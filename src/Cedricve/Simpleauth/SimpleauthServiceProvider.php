@@ -20,11 +20,9 @@ class SimpleauthServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		$this->package('cedricverst/simpleauth');
-
-		Auth::extend('simple', function()
+		Auth::provider('simple', function($app, array $config)
 		{
-		    return new Guard(new SimpleauthUserProvider, $this->app['session.store']);
+		    return new SimpleauthUserProvider($app->make('session.store'));
 		});
 	}
 
