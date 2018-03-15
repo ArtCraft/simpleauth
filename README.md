@@ -17,7 +17,7 @@ Add fork to composer.json respositories property:
 
 Install using composer:
 
-    composer require cedricve/simpleauth
+    composer require cedricve/simpleauth dev-laravel-5.5
 
 Add the service provider in `app/config/app.php`:
 
