@@ -1,11 +1,21 @@
 {
     "name": "cedricve/simpleauth",
     "description": "A simple authentication driver for Laravel",
-    "keywords": ["authentication","auth","simple"],
+    "keywords": [
+        "authentication",
+        "auth",
+        "simple",
+        "fake",
+        "laravel"
+    ],
     "authors": [
         {
             "name": "Cédric Verstraeten",
             "email": "hello@cedric.ws"
+        },
+        {
+            "name": "Maksim Martianov",
+            "email": "maxmtmn@gmail.com"
         }
     ],
     "license" : "MIT",

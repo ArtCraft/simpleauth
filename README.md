@@ -6,6 +6,15 @@ A simple authentication driver, which makes it possible to define one or more us
 Installation
 ------------
 
+Add fork to composer.json respositories property:
+
+    ```json
+    {
+      "type": "vcs",
+      "url": "https://github.com/maksimru/simpleauth.git"
+    }
+    ```
+
 Install using composer:
 
     composer require cedricve/simpleauth
