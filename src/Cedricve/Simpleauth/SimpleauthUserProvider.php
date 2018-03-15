@@ -1,4 +1,6 @@
-<?php namespace Cedricve\Simpleauth;
+<?php
+
+namespace Cedricve\Simpleauth;
 
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -6,10 +8,14 @@ use Illuminate\Contracts\Auth\Authenticatable;
 class SimpleauthUserProvider implements UserProvider
 {
     protected $users;
+    protected $login_field;
+    protected $model;
 
     public function __construct()
     {
-        $this->users = \Config::get("app.users");
+        $this->login_field = \Config::get("simpleauth.login_field",'email');
+        $this->users = \Config::get("simpleauth.users");
+        $this->model = \Config::get("simpleauth.model");
     }
 
     public function getUsers()
@@ -48,7 +54,7 @@ class SimpleauthUserProvider implements UserProvider
             // Check if user has been found.
             if($user != null)
             {
-                return (new SimpleauthUser())->fill($user);
+                return (new $this->model())->forceFill($user);
             }
         }
     }
@@ -61,14 +67,14 @@ class SimpleauthUserProvider implements UserProvider
         $user = null;
 
         // If credentials is not a valid array, return null.
-        if(array_key_exists("username", $credentials) && array_key_exists("password", $credentials))
+        if(array_key_exists($this->login_field, $credentials) && array_key_exists("password", $credentials))
         {
             // Search for the user in the users array in the app.config.
             foreach ($this->users as $key => $value)
             {
-                if(array_key_exists("username", $value) && array_key_exists("password", $value))
+                if(array_key_exists($this->login_field, $value) && array_key_exists("password", $value))
                 {
-                    if($value["username"] == $credentials["username"] &&
+                    if($value[$this->login_field] == $credentials[$this->login_field] &&
                         $value["password"] == $credentials["password"])
                     {
                         $user = $value;
@@ -80,7 +86,7 @@ class SimpleauthUserProvider implements UserProvider
             // Check if user has been found.
             if($user != null)
             {
-                return (new SimpleauthUser())->fill($user);
+                return (new $this->model())->forceFill($user);
             }
         }
     }

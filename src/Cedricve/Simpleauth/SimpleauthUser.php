@@ -24,7 +24,7 @@ class SimpleauthUser extends Model implements AuthenticatableContract
 
     public function getAuthIdentifierName()
     {
-        return $this->username;
+        return $this->{\Config::get("simpleauth.login_field",'email')};
     }
 
     /**

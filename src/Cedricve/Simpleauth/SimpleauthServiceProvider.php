@@ -18,10 +18,17 @@ class SimpleauthServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		\Auth::provider('simple', function($app, array $config)
-		{
-		    return new SimpleauthUserProvider($app->make('session.store'));
-		});
+        if ($this->app->runningInConsole()) {
+            if (!str_contains($this->app->version(), 'Lumen')) {
+                $this->publishes([
+                    __DIR__ . '/../config/simpleauth.php' => config_path('simpleauth.php'),
+                ], 'config');
+            }
+        }
+        \Auth::provider('simple', function($app, array $config)
+        {
+            return new SimpleauthUserProvider();
+        });
 	}
 
 	/**
@@ -31,16 +38,7 @@ class SimpleauthServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		//
+        $this->mergeConfigFrom(__DIR__ . '/../config/simpleauth.php', 'simpleauth');
 	}
 
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return array();
-	}
 }
