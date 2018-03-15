@@ -1,8 +1,6 @@
 <?php namespace Cedricve\Simpleauth;
 
-use Auth;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Auth\Guard;
 
 class SimpleauthServiceProvider extends ServiceProvider
 {
@@ -20,7 +18,7 @@ class SimpleauthServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		Auth::provider('simple', function($app, array $config)
+		\Auth::provider('simple', function($app, array $config)
 		{
 		    return new SimpleauthUserProvider($app->make('session.store'));
 		});

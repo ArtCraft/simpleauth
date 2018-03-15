@@ -1,6 +1,5 @@
 <?php namespace Cedricve\Simpleauth;
 
-use Config;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Contracts\Auth\Authenticatable;
 
@@ -10,7 +9,7 @@ class SimpleauthUserProvider implements UserProvider
 
     public function __construct()
     {
-        $this->users = Config::get("app.users");
+        $this->users = \Config::get("app.users");
     }
 
     public function getUsers()
@@ -49,7 +48,7 @@ class SimpleauthUserProvider implements UserProvider
             // Check if user has been found.
             if($user != null)
             {
-                return new SimpleauthUser($user);
+                return (new SimpleauthUser())->fill($user);
             }
         }
     }
@@ -81,7 +80,7 @@ class SimpleauthUserProvider implements UserProvider
             // Check if user has been found.
             if($user != null)
             {
-                return new SimpleauthUser($user);
+                return (new SimpleauthUser())->fill($user);
             }
         }
     }

@@ -1,22 +1,15 @@
-<?php namespace Cedricve\Simpleauth;
+<?php
 
-use Illuminate\Contracts\Auth\Authenticatable;
+namespace Cedricve\Simpleauth;
 
-class SimpleauthUser implements Authenticatable
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+
+class SimpleauthUser extends Model implements AuthenticatableContract
 {
-    protected $token = "";
-    protected $details = [];
-    public $id = null;
-    public $username = "";
-    public $language = "";
 
-    public function __construct(array $details)
-    {
-        $this->details = $details;
-        $this->id = $details["id"];
-        $this->username = $details["username"];
-        $this->language = $details["language"];
-    }
+    use Authenticatable;
 
     /**
      * Get the unique identifier for the user.
@@ -26,12 +19,12 @@ class SimpleauthUser implements Authenticatable
 
     public function getAuthIdentifier()
     {
-        return $this->details["id"];
+        return $this->id;
     }
 
     public function getAuthIdentifierName()
     {
-        return $this->details["username"];
+        return $this->username;
     }
 
     /**
@@ -42,7 +35,7 @@ class SimpleauthUser implements Authenticatable
 
     public function getAuthPassword()
     {
-        return $this->details["password"];
+        return $this->password;
     }
 
     public function setRememberToken($value){}
