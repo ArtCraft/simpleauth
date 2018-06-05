@@ -21,7 +21,7 @@ Install using composer:
 
 Add the service provider in `app/config/app.php`:
 
-    'Cedricve\Simpleauth\SimpleauthServiceProvider',
+    Cedricve\Simpleauth\SimpleauthServiceProvider::class,
 
 The service provider will register a extension with the original auth manager. There is no need to register additional facades or objects.
 
@@ -32,7 +32,7 @@ Configuration
 
 1) Publish configuration
     ```php
-    php artisan vendor:publish --provider=namespace Cedricve\Simpleauth\SimpleauthServiceProvider
+    php artisan vendor:publish --provider=Cedricve\Simpleauth\SimpleauthServiceProvider
     ```
     
 2) Configure in config/simpleauth.php
